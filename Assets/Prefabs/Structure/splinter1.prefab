@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 404982}
   - component: {fileID: 3358806}
   - component: {fileID: 2304164}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: splinter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
