@@ -6,7 +6,7 @@ public class DeactivateParticle : MonoBehaviour
     [Tooltip("Deactivate gameObject on Awake.")]
     public bool startInactive;
 
-    ParticleSystem particle;
+    private ParticleSystem particle;   
     float delay;
 
     void Awake()
@@ -14,6 +14,7 @@ public class DeactivateParticle : MonoBehaviour
         if (particle == null)
         {
             particle = GetComponent<ParticleSystem>();
+            
         }
 
         if (particle == null)
@@ -23,13 +24,14 @@ public class DeactivateParticle : MonoBehaviour
         }
         else
         {
+            var particleMain = particle.main;
             foreach (ParticleSystem p in GetComponentsInChildren<ParticleSystem>())
             {
-                delay = particle.startLifetime + Mathf.Max(particle.startLifetime, p.startLifetime);
+                delay = particleMain.startLifetime.constant + Mathf.Max(particleMain.startLifetime.constant, p.main.startLifetime.constant);
             }
-
-            particle.playOnAwake = true;
-            particle.loop = false;
+            
+            particleMain.playOnAwake = true;
+            particleMain.loop = false;
 
             gameObject.SetActive(!startInactive);
         }
